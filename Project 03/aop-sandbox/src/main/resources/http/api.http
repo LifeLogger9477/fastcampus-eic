@@ -1,1 +1,1 @@
-GET localhost:8080/api/product//bag
+GET localhost:8080/api/product/shoe

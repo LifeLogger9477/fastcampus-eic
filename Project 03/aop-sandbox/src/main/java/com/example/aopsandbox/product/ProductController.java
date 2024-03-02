@@ -1,7 +1,11 @@
 package com.example.aopsandbox.product;
 
+import com.example.aopsandbox.config.AlphabetConfigs;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * author : ms.Lee
@@ -10,22 +14,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
+  @Value("${my.name}")
+  private String name;
+
+  @Value(("${alphabets}"))
+  private List<String> alphabets;
+
   private final ProductService productService;
-//  private final AlphabetConfigs alphabetConfigs;
+  private final AlphabetConfigs alphabetConfigs;
 
   public ProductController(
-      ProductService productService
-//      AlphabetConfigs alphabetConfigs
+      ProductService productService,
+      AlphabetConfigs alphabetConfigs
   ) {
 
     this.productService = productService;
-//    this.alphabetConfigs = alphabetConfigs;
+    this.alphabetConfigs = alphabetConfigs;
   }
 
   @GetMapping(value = "/api/product/shoe")
   public void createShoe() {
 
-//    alphabetConfigs.getGoogle();
+    alphabetConfigs.getGoogle();
     productService.createShoe(new ProductDTO("신발", "shoe"));
   }
 

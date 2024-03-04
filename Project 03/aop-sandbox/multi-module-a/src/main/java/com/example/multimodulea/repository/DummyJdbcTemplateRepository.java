@@ -85,6 +85,17 @@ public class DummyJdbcTemplateRepository implements DummyRepository {
 
     String sql = "delete from dummy where id = ?";
 
+    /*
     return jdbcTemplate.update(sql, id);
+     */
+
+    return jdbcTemplate.update((Connection conn) -> {
+
+      PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+      preparedStatement.setInt(1, id);
+
+      return preparedStatement;
+    });
   }
 }

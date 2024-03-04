@@ -4,10 +4,11 @@ import com.example.multimodulea.entity.Dummy;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,22 @@ public class DummyJdbcTemplateRepository implements DummyRepository {
   @Override
   public Optional<Dummy> findByName(String name) {
 
-    return Optional.empty();
+    String sql = "select * from dummy where name = ?";
+    List<Dummy> dummies =
+        jdbcTemplate.query(sql, new RowMapper<Dummy>() {
+          @Override
+          public Dummy mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+            Dummy dummy = new Dummy();
+
+            dummy.setId(rs.getInt("id"));
+            dummy.setName(rs.getString("name"));
+
+            return dummy;
+          }
+        }, name);
+
+    return Optional.ofNullable(dummies.get(0));
   }
 
 

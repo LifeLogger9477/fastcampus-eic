@@ -3,6 +3,7 @@ package com.example.multimodulea.controller;
 import com.example.multimodulea.entity.Dummy;
 import com.example.multimodulea.repository.DummyRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,12 @@ public class DummyController {
   ) {
 
     this.dummyRepository = dummyRepository;
+  }
+
+  @GetMapping(value = "/api/v1/dummy/{name}")
+  public Dummy getByName(@PathVariable String name) {
+
+    return dummyRepository.findByName(name).orElse(new Dummy());
   }
 
   @GetMapping(value = "/api/v1/dummy/create")

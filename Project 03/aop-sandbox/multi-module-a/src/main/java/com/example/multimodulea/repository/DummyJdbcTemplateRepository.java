@@ -3,7 +3,6 @@ package com.example.multimodulea.repository;
 import com.example.multimodulea.entity.Dummy;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
@@ -18,24 +17,27 @@ import java.util.Optional;
 public class DummyJdbcTemplateRepository implements DummyRepository {
 
   private final JdbcTemplate jdbcTemplate;
-  private final TransactionTemplate writeTransactionOperations;
-  private final TransactionTemplate readTransactionOperations;
+  // private final TransactionTemplate writeTransactionOperations;
+  // private final TransactionTemplate readTransactionOperations;
 
   public DummyJdbcTemplateRepository(
-      DataSource dataSource,
+      DataSource dataSource/*,
       TransactionTemplate writeTransactionOperations,
       TransactionTemplate readTransactionOperations
+      */
   ) {
 
     this.jdbcTemplate = new JdbcTemplate(dataSource);
-    this.writeTransactionOperations = writeTransactionOperations;
-    this.readTransactionOperations = readTransactionOperations;
+//    this.writeTransactionOperations = writeTransactionOperations;
+//    this.readTransactionOperations = readTransactionOperations;
   }
 
   @Override
   public Dummy save(Dummy dummy) {
 
     String sql = "insert into dummy values (?, ?)";
+    jdbcTemplate.update(sql, LocalDateTime.now().getNano(), dummy.getName());
+    /*
     writeTransactionOperations.executeWithoutResult(
         status -> {
           jdbcTemplate.update(
@@ -45,6 +47,7 @@ public class DummyJdbcTemplateRepository implements DummyRepository {
           );
         }
     );
+     */
 
     return dummy;
   }

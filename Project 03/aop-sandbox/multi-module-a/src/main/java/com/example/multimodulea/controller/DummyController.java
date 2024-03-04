@@ -37,4 +37,16 @@ public class DummyController {
 
     return dummyRepository.save(dummy);
   }
+
+  @GetMapping(value = "/api/v1/dummy/update")
+  public int update(@RequestParam int id, @RequestParam String name) {
+
+    return dummyRepository.updateNameById(id, name);
+  }
+
+  @GetMapping(value = "/api/v1/dummy/delete")
+  public int delete(@RequestParam int id) {
+
+    return dummyRepository.deleteById(id);
+  }
 }

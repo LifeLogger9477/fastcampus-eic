@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -66,12 +68,23 @@ public class DummyJdbcTemplateRepository implements DummyRepository {
   @Override
   public int updateNameById(int id, String name) {
 
-    return 0;
+    String sql = "update dummy set name = ? where id = ?";
+
+    return jdbcTemplate.update((Connection conn) -> {
+
+      PreparedStatement preparedStatement = conn.prepareStatement(sql);
+      preparedStatement.setString(1, name);
+      preparedStatement.setInt(2, id);
+
+      return preparedStatement;
+    });
   }
 
   @Override
   public int deleteById(int id) {
 
-    return 0;
+    String sql = "delete from dummy where id = ?";
+
+    return jdbcTemplate.update(sql, id);
   }
 }

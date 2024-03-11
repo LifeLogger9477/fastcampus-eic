@@ -5,8 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.ZonedDateTime;
-
 /**
  * author : ms.Lee
  * date   : 2024-03-10
@@ -16,7 +14,7 @@ import java.time.ZonedDateTime;
 public class Store {
   
   @Id
-  private String storeId;
+  private int storeId;
 
   @Column
   private String name;
@@ -28,8 +26,8 @@ public class Store {
   private String phoneNumber;
   
   @Column
-  private ZonedDateTime openAt;
+  private String openAt;
   
   @Column
-  private ZonedDateTime closeAt;
+  private String closeAt;
 }

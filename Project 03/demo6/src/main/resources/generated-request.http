@@ -3,3 +3,25 @@ POST http://localhost:8080/api/v1/customers?name=ben&address=seoul&phoneNumber=0
 
 ###
 POST http://localhost:8080/api/v1/orders
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "storeId": 1,
+  "products": {
+    "1": 10, 
+    "2": 10
+  }
+}
+
+###
+POST http://localhost:8080/api/v1/orders
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "storeId": 1,
+  "products": {
+    "1": 1
+  }
+}

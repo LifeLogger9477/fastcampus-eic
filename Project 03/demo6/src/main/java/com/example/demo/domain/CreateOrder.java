@@ -14,5 +14,6 @@ import java.util.Map;
 public class CreateOrder {
   
   private int customerId;
+  private int storeId;
   private Map<Integer, Integer> quantityByProduct;  // ["아메리카노", 3]
 }

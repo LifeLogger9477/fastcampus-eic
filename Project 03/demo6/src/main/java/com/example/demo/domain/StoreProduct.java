@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -10,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
  * date   : 2024-03-10
  */
 @Getter
+@Builder
 @Table(name = "store_products")
 public class StoreProduct {
   

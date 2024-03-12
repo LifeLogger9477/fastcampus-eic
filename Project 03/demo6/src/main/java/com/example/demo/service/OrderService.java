@@ -31,6 +31,13 @@ public class OrderService {
 
   public void newOrder(CreateOrder createOrder) {
 
+    /**
+     * customer id 가 존재하지 않는 경우에 대한
+     * 코드 작성 
+     * + 테스트 코드 작성해볼 것
+     */
+    
+    
     // 재고 임시 저장
     List<StoreProduct> storeProducts = new ArrayList<>();
     

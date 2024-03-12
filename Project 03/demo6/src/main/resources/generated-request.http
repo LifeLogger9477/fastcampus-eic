@@ -25,3 +25,31 @@ Content-Type: application/json
     "1": 1
   }
 }
+
+### 기능 테스트
+### 고객 추가
+POST http://localhost:8080/api/v1/customers?name=danny&address=seoul&phoneNumber=010-1111-1111
+
+### 주문 - 예외 발생
+POST http://localhost:8080/api/v1/orders
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "storeId": 1,
+  "products": {
+    "1": 100
+  }
+}
+
+### 주문 - 정상
+POST http://localhost:8080/api/v1/orders
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "storeId": 1,
+  "products": {
+    "1": 3
+  }
+}

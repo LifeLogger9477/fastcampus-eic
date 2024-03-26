@@ -1,0 +1,17 @@
+### 
+POST http://localhost:8080/api/v1/users?name=danny&gender=male
+
+### 
+POST http://localhost:8080/api/v1/users?name=ben&gender=male
+
+### 
+POST http://localhost:8080/api/v1/users?name=allie&gender=female
+
+###
+GET http://localhost:8080/api/v1/users/gender/male
+
+###
+PUT http://localhost:8080/api/v1/users/1?name=kevin
+
+###
+DELETE http://localhost:8080/api/v1/users/1

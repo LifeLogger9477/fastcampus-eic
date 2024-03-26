@@ -1,0 +1,10 @@
+{
+  "name": "danny.kim", 
+  "age": 32, 
+  "address": "seoul", 
+  "phoneNumber": "010-1111-1111", 
+  "test": {
+    "test1": "testA", 
+    "test2": "testB"
+  }
+}
